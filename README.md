@@ -1,2 +1,2 @@
 # Go
- Repositório com exemplos e arquivos em G
+ Repositório com exemplos e arquivos em Go
