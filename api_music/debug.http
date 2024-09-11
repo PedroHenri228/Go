@@ -1,14 +1,17 @@
 ### Teste GET
-# Este é um exemplo de uma solicitação GET para obter dados de um recurso
 GET http://localhost:8080/music
 Accept: application/json
 
 ###
+
+### Teste GET com ID
 GET http://localhost:8080/music/1
 Accept: application/json
 
+###
+
 ### Teste POST
-# Este é um exemplo de uma solicitação POST para criar um novo recurso
+
 POST http://localhost:8080/music
 Content-Type: application/json
 
@@ -23,7 +26,6 @@ Content-Type: application/json
 ###
 
 ### Teste PUT
-# Este é um exemplo de uma solicitação PUT para atualizar um recurso existente
 PUT http://localhost:8080/music/1
 Content-Type: application/json
 
@@ -35,7 +37,7 @@ Content-Type: application/json
 ###
 
 ### Teste DELETE
-# Este é um exemplo de uma solicitação DELETE para remover um recurso
+
 DELETE http://localhost:8080/music/5
 
 ###
