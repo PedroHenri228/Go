@@ -23,7 +23,7 @@ func NewMusicService(db *sql.DB) *MusicService {
 }
 
 func(s *MusicService) SetMusic(music *Music) error {
-	query := "INSERT INTO music(titulo, artista, album, lancamento, genero) VALUES (?,?,?)"
+	query := "INSERT INTO music(titulo, artista, album, lancamento, genero) VALUES (?,?,?,?,?)"
 
 	result, err := s.db.Exec(query, music.Titulo, music.Artista, music.Album, music.Lancamento, music.Genero)
 

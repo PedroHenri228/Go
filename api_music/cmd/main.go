@@ -7,7 +7,9 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+
 	_ "github.com/go-sql-driver/mysql"
+	"github.com/gorilla/mux"
 )
 
 func main() {
@@ -26,12 +28,12 @@ func main() {
 	MusicService := service.NewMusicService(db)
 	MusicHandlers := web.NewMusicHandler(MusicService)
 
-	router := http.NewServeMux()
-	router.HandleFunc("GET /music", MusicHandlers.GetMusic)
-	router.HandleFunc("POST /music", MusicHandlers.SetMusic)
-	router.HandleFunc("GET /music/{id}", MusicHandlers.GetMusicByID)
-	router.HandleFunc("PUT /music/{id}", MusicHandlers.UpdateMusic)
-	router.HandleFunc("DELETE /music/{id}", MusicHandlers.DeleteMusic)
+	router := mux.NewRouter()
+	router.HandleFunc("/music", MusicHandlers.GetMusic).Methods("GET")
+	router.HandleFunc("/music", MusicHandlers.SetMusic).Methods("POST")
+	router.HandleFunc("/music/{id}", MusicHandlers.GetMusicByID).Methods("GET")
+	router.HandleFunc("/music/{id}", MusicHandlers.UpdateMusic).Methods("PUT")
+	router.HandleFunc("/music/{id}", MusicHandlers.DeleteMusic).Methods("DELETE")
 
 
 	fmt.Println("Servidor Rodando na porta 8080.....")
