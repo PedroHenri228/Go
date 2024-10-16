@@ -1,0 +1,9 @@
+### Teste de envio de e-mail
+POST http://localhost:8080/send-email
+Content-Type: application/json
+
+{
+  "to": "phking557@example.com",
+  "subject": "Assunto de Teste",
+  "body": "Este é um e-mail de teste."
+}
