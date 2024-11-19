@@ -1,48 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>GoNotify Client</title>
-</head>
-<body>
+  </head>
+  <body>
     <h1>Notificações em Tempo Real</h1>
-    <input type="text" id="messageInput" placeholder="Digite uma mensagem">
+    <input type="text" id="messageInput" placeholder="Digite uma mensagem" />
     <button onclick="sendMessage()">Enviar</button>
     <div id="notifications"></div>
 
     <script>
-        // Configurando a conexão WebSocket
-        const socket = new WebSocket("ws://localhost:8080/ws");
+      const socket = new WebSocket("ws://localhost:8080/ws");
 
-        socket.onopen = function(event) {
-            console.log("Conexão WebSocket estabelecida com sucesso.");
-        };
+      socket.onopen = function (event) {
+        console.log("Conexão WebSocket estabelecida com sucesso.");
+      };
 
-        socket.onclose = function(event) {
-            console.log("Conexão WebSocket fechada:", event);
-        };
+      socket.onclose = function (event) {
+        console.log("Conexão WebSocket fechada:", event);
+      };
 
-        socket.onerror = function(error) {
-            console.error("Erro na conexão WebSocket:", error);
-        };
+      socket.onerror = function (error) {
+        console.error("Erro na conexão WebSocket:", error);
+      };
 
-        socket.onmessage = function(event) {
-            const notifications = document.getElementById("notifications");
-            const message = document.createElement("p");
-            message.textContent = `Notificação: ${event.data}`;
-            notifications.appendChild(message);
-        };
+      socket.onmessage = (event) => {
+        console.log("Mensagem recebida do servidor:", event.data);
+      };
 
-        function sendMessage() {
-            const input = document.getElementById("messageInput");
-            if (socket.readyState === WebSocket.OPEN) {
-                console.log("Enviando mensagem:", input.value);
-                socket.send(input.value);
-                input.value = '';
-            } else {
-                console.error("A conexão WebSocket não está aberta.");
-            }
+      socket.onmessage = function (event) {
+        const notifications = document.getElementById("notifications");
+        const message = document.createElement("p");
+        message.textContent = `Notificação: ${event.data}`;
+        notifications.appendChild(message);
+      };
+
+      function sendMessage() {
+        const input = document.getElementById("messageInput");
+        if (socket.readyState === WebSocket.OPEN) {
+          console.log("Enviando mensagem:", input.value);
+          socket.send(input.value);
+          input.value = "";
+        } else {
+          console.error("A conexão WebSocket não está aberta.");
         }
+      }
     </script>
-</body>
+  </body>
 </html>
