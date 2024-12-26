@@ -19,7 +19,7 @@ func GetData(w http.ResponseWriter, r *http.Request)  {
 		
 	 }
 }
-func main() { // Função de entrada
+func main() {
 
  
 	fs := http.FileServer(http.Dir("static")) // Definindo o diretório na pasta 'static'
