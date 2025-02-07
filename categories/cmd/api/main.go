@@ -6,12 +6,15 @@ import "github.com/gin-gonic/gin"
 
 func main() {
 
-	r := gin.Default()
+	router := gin.Default()
 
-	r.GET("/healthy", func (c *gin.Context) {
+	router.GET("/healthy", func (c *gin.Context) {
 		c.JSON(200, gin.H{
 			"success": false,
 		})
 	}) 
-	r.Run(":8080")
+
+	CategoryRoutes(router)
+
+	router.Run(":8080")
 }
